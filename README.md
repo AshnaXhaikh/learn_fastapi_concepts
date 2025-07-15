@@ -1,3 +1,17 @@
+# 🚀 FastAPI Learning Plan and Notes
+
+This repository documents my learning path into **FastAPI**, with examples, explanations, and notes.
+
+---
+
+## ✅ 1️⃣ What is FastAPI?
+
+FastAPI is a high-performance Python web framework for building APIs quickly, with:
+- Type-hint-based validation
+- Automatic Swagger documentation
+- Async and sync support
+
+---
 # 🚀 FastAPI Basics Walkthrough
 
 This repo is a step-by-step guide to learning **FastAPI fundamentals**, one concept at a time.
