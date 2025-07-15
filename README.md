@@ -39,3 +39,24 @@ Each Python file in the `app/` folder covers a single topic, like:
 | 07_list_of_dicts.py           | Return `List[dict]`              |
 | 08_pydantic_model.py          | Request body with BaseModel      |
 
+
+## ✅ 2️⃣ Type Hints Structure
+
+FastAPI relies on Python type hints for validation and docs generation.
+
+⭐ Example:
+
+```python
+def get_item(item_id: int) -> dict:
+    return {"item_id": item_id}
+```
+```python
+⭐ In FastAPI:
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int) -> dict:
+    return {"item_id": item_id}
+```
