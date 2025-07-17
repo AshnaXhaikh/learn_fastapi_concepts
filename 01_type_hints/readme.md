@@ -1,6 +1,6 @@
 # 01_type_hints.py
-'''
-##🎯 Concept: Function Annotations (Type Hints)
+
+## 🎯 Concept: Function Annotations (Type Hints)
 
 Type hints help indicate the expected types of function arguments and return values.
 They improve code readability, catch errors early, and work well with tools like FastAPI and MyPy.
