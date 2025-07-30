@@ -22,39 +22,4 @@ uvicorn http_methods:app --reload
 | PATCH  | `/accounts/123`         | Adjust balance               |
 | DELETE | `/accounts/123`         | Close account                |
 
-## Test in Browser
-- Visit `http://localhost:8000/docs` for interactive testing
-- Try the "Try it out" buttons for each endpoint
 
-## Next Steps
-1. Add error handling (try invalid account IDs)
-2. Expand with query parameters (`/accounts?min_balance=500`)
-3. Move to router-based organization
-
-
-
-bank_api/
-
-├── main.py                 # HQ - coordinates everything
-
-├── routers/                # Departments
-
-│   ├── __init__.py
-
-│   ├── accounts.py         # Account management
-
-│   ├── loans.py            # Loan services
-
-│   └── auth.py             # Authentication
-
-├── models/                 # Data structures
-
-│   └── schemas.py          # Request/response formats
-
-├── dependencies.py         # Shared utilities
-
-├── tests/                  # Quality control
-
-│   └── test_accounts.py
-
-└── requirements.txt        # Required packages
