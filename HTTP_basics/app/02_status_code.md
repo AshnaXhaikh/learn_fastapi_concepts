@@ -208,4 +208,62 @@ curl -X GET http://localhost:8000/ok
 # Test error case
 curl -X GET http://localhost:8000/not-found/99 -v
 ```
+Here's a comprehensive table of all HTTP status codes used in your FastAPI implementation, presented in Markdown format:
+
+---
+## 📊 HTTP Status Codes Reference Table
+
+| Status Code | Name                  | Endpoint               | Trigger Condition                     | Response Body Example                |
+|-------------|-----------------------|------------------------|---------------------------------------|--------------------------------------|
+| 200         | OK                    | `GET /ok`              | Standard successful request           | `{"message": "Everything is OK"}`    |
+| 200         | OK                    | `GET /not-found/{id}`  | When item exists in fake DB           | `{"item": "Apple"}`                  |
+| 201         | Created               | `POST /created`        | Resource created successfully         | `{"message": "Resource created"}`    |
+| 204         | No Content            | `DELETE /deleted`      | Successful deletion                   | (Empty response)                     |
+| 400         | Bad Request           | `GET /bad-request`     | Invalid client input                  | `{"error": "Bad request..."}`        |
+| 404         | Not Found             | `GET /not-found/{id}`  | When item doesn't exist in fake DB    | `{"detail": "Item not found"}`       |
+| 500         | Internal Server Error | `GET /error`           | Server-side error occurred            | `{"error": "Something went wrong"}`  |
+
+---
+### Key Explanations:
+
+1. **2xx Success Codes**
+   - `200 OK`: Default success status for GET requests
+   - `201 Created`: Specifically for resource creation
+   - `204 No Content`: For successful operations with no return data
+
+2. **4xx Client Errors**
+   - `400 Bad Request`: Client-side validation errors
+   - `404 Not Found`: Resource doesn't exist at specified URL
+
+3. **5xx Server Errors**  
+   - `500 Internal Server Error`: Catch-all for server-side failures
+
+### Visual Flowchart of Status Codes
+```mermaid
+graph TD
+    A[Request] --> B{Success?}
+    B -->|Yes| C[200/201/204]
+    B -->|No| D{Client Error?}
+    D -->|Yes| E[400/404]
+    D -->|No| F[500]
+```
+
+### Best Practices
+1. Use `200` for standard successful GET requests
+2. Return `201` + Location header when creating resources
+3. Prefer `404` over `400` when the URL itself is invalid
+4. Reserve `500` for unexpected server-side exceptions
+5. Always include descriptive messages in error responses
+
+### Testing Cheat Sheet
+```bash
+# Test all status codes
+curl -X GET http://localhost:8000/ok                 # 200
+curl -X POST http://localhost:8000/created           # 201 
+curl -X DELETE http://localhost:8000/deleted -v      # 204 (-v shows headers)
+curl -X GET http://localhost:8000/not-found/99       # 404
+curl -X GET http://localhost:8000/bad-request        # 400
+curl -X GET http://localhost:8000/error              # 500
+```
+
 
