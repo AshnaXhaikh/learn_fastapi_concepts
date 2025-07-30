@@ -1,4 +1,3 @@
-````markdown
 # 🌐 Understanding Headers in FastAPI
 
 Welcome! This guide explains what headers are, how to use them in FastAPI, and how to test them using Postman and cURL — all in easy, beginner-friendly language.
@@ -44,7 +43,7 @@ app = FastAPI()
 @app.get("/greet")
 def greet(user_agent: str = Header(None)):
     return {"Your device": user_agent}
-````
+```
 
 ### 🔍 What It Does:
 
