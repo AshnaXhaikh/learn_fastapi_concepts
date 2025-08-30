@@ -40,23 +40,126 @@ Each Python file in the `app/` folder covers a single topic, like:
 | 08_pydantic_model.py          | Request body with BaseModel      |
 
 
-## ✅ 2️⃣ Type Hints Structure
+# FastAPI Basics – Step by Step 🚀
 
-FastAPI relies on Python type hints for validation and docs generation.
+This repo contains small, easy examples to understand **FastAPI fundamentals**. Each Python file introduces one concept in a simple way.
 
-⭐ Example:
+---
+
+## 1️⃣ Type Hints – `01_type_hints.py`
+
+Python **type hints** help us tell FastAPI (and ourselves) what type of data a function expects/returns.
 
 ```python
-def get_item(item_id: int) -> dict:
-    return {"item_id": item_id}
+def add(a: int, b: int) -> int:
+    return a + b
 ```
+
+* `a: int` means `a` should be an integer
+* `-> int` means the function returns an integer
+
+---
+
+## 2️⃣ HTTP Methods – `02_http_methods.py`
+
+FastAPI supports common **HTTP methods**:
+
+* `GET` → fetch data
+* `POST` → create data
+* `PUT` → update data
+* `DELETE` → remove data
+
+---
+
+## 3️⃣ Status Codes – `03_status_codes.py`
+
+We can send **custom responses** with status codes:
+
+* `200` → OK
+* `201` → Created
+* `404` → Not Found
+* `500` → Server Error
+
+---
+
+## 4️⃣ Headers – `04_headers.py`
+
+You can access **request headers** (like `User-Agent`, `Authorization`) from clients.
+
+---
+
+## 5️⃣ JSON Response – `05_json_response.py`
+
+FastAPI automatically returns **JSON**. Example:
+
 ```python
-⭐ In FastAPI:
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int) -> dict:
-    return {"item_id": item_id}
+@app.get("/items")
+def get_items():
+    return {"id": 1, "name": "Book"}
 ```
+
+---
+
+## 6️⃣ REST API Example – `06_rest_api_example.py`
+
+Shows how to design a **RESTful endpoint**:
+
+* `/users` → list all users (GET)
+* `/users/{id}` → get one user (GET)
+* `/users` → create a user (POST)
+* `/users/{id}` → update a user (PUT)
+* `/users/{id}` → delete a user (DELETE)
+
+---
+
+## 7️⃣ List of Dicts – `07_list_of_dicts.py`
+
+We can return a **list of dictionaries** in JSON:
+
+```python
+@app.get("/users")
+def get_users():
+    return [
+        {"id": 1, "name": "Ayan"},
+        {"id": 2, "name": "Ali"}
+    ]
+```
+
+---
+
+## 8️⃣ Pydantic Models – `08_pydantic_model.py`
+
+Pydantic’s `BaseModel` validates request bodies automatically.
+
+```python
+from pydantic import BaseModel
+
+class User(BaseModel):
+    id: int
+    name: str
+```
+
+* If the request has wrong data (e.g. `id` as text), FastAPI returns an error.
+* You get **clean, validated data** without extra code.
+
+---
+
+## 🚀 How to Run
+
+1. Install FastAPI & Uvicorn (only once):
+
+   ```bash
+   pip install fastapi uvicorn
+   ```
+2. Run any file:
+
+   ```bash
+   uvicorn 01_type_hints:app --reload
+   ```
+3. Open docs: 👉 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
+---
+
+✅ With these 8 examples, you’ll understand the **core of FastAPI**: type hints, routes, responses, REST design, and validation.
+
+---
